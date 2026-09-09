@@ -1,0 +1,31 @@
+{
+  "name": "OpsForge: синхронизация базы знаний в S3/RAG",
+  "nodes": [
+    {
+      "parameters": { "rule": { "interval": [{ "field": "hours", "hoursInterval": 6 }] } },
+      "id": "cron-sync",
+      "name": "Каждые 6 часов",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8000/api/demo/knowledge-sync",
+        "options": {}
+      },
+      "id": "http-sync",
+      "name": "Переиндексация",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [280, 0]
+    }
+  ],
+  "connections": {
+    "Каждые 6 часов": { "main": [[{ "node": "Переиндексация", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "opsforge" }, { "name": "rag" }]
+}

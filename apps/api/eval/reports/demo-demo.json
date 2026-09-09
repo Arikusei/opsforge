@@ -1,0 +1,1265 @@
+{
+  "meta": {
+    "provider": "demo",
+    "model": "rule-based",
+    "mode": "demo",
+    "dataset": "dataset.jsonl"
+  },
+  "summary": {
+    "cases": 28,
+    "pass_rate": 0.5,
+    "tools_required_rate": 0.846,
+    "tools_any_of_rate": 0.625,
+    "tools_forbidden_rate": 0.6,
+    "answer_content_rate": 0.5,
+    "guardrail_rate": 1.0,
+    "citation_source_rate": 1.0,
+    "content_group_coverage": 0.571,
+    "citation_rate": 1.0,
+    "guardrail_violations": 0,
+    "fallbacks": 28,
+    "latency_ms_p50": 6,
+    "latency_ms_p95": 29,
+    "total_tokens": 0,
+    "total_cost_usd": 0.0,
+    "avg_iterations": 1.0,
+    "avg_tool_calls": 1.0,
+    "by_category": {
+      "product_selection": {
+        "total": 10,
+        "passed": 7,
+        "pass_rate": 0.7
+      },
+      "lead_creation": {
+        "total": 2,
+        "passed": 2,
+        "pass_rate": 1.0
+      },
+      "lead_qualification": {
+        "total": 2,
+        "passed": 0,
+        "pass_rate": 0.0
+      },
+      "quote": {
+        "total": 2,
+        "passed": 2,
+        "pass_rate": 1.0
+      },
+      "policy": {
+        "total": 5,
+        "passed": 1,
+        "pass_rate": 0.2
+      },
+      "guardrail": {
+        "total": 4,
+        "passed": 1,
+        "pass_rate": 0.25
+      },
+      "escalation": {
+        "total": 1,
+        "passed": 0,
+        "pass_rate": 0.0
+      },
+      "multi_step": {
+        "total": 1,
+        "passed": 0,
+        "pass_rate": 0.0
+      },
+      "out_of_scope": {
+        "total": 1,
+        "passed": 1,
+        "pass_rate": 1.0
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "prod-food-nsf",
+      "category": "product_selection",
+      "question": "Чем смазать подшипники фасовочной линии на пищевом производстве? Нужен допуск NSF.",
+      "answer": "Подбор по демо-базе знаний:\n• Смазка NSF H1 ForgeFood 397 (FORGE-FOOD-397, остаток 65) — Полусинтетическая смазка с допуском NSF H1 для пищевых производств.\n\n# ForgeFood 397 — полусинтетическая смазка NSF H1\nЕсли нужно — могу создать лид в CRM или набросать КП.",
+      "run_id": "343aee5d-4b39-4edb-91e0-12c86a2bf670",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 7
+      },
+      "latency_ms": 7,
+      "warning": null,
+      "grade": {
+        "passed": true,
+        "checks": [
+          {
+            "name": "tools_required",
+            "ok": true,
+            "detail": "все вызваны"
+          },
+          {
+            "name": "tools_forbidden",
+            "ok": true,
+            "detail": "нет лишних вызовов"
+          },
+          {
+            "name": "answer_content",
+            "ok": true,
+            "detail": "2/2 групп"
+          },
+          {
+            "name": "citation_source",
+            "ok": true,
+            "detail": "есть источник products/"
+          }
+        ],
+        "used_tools": [
+          "search_catalog"
+        ],
+        "content_groups_total": 2,
+        "content_groups_ok": 2,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "prod-sozh-alloy",
+      "category": "product_selection",
+      "question": "Нужна СОЖ для тяжёлой обработки легированной стали, инструмент быстро садится.",
+      "answer": "Подбор по демо-базе знаний:\n• Масляная СОЖ ForgeSozh 632 (FORGE-SOZH-632, остаток 18) — Масляная СОЖ для тяжёлой металлообработки и легированных сталей.\n• СОЖ ForgeCut (FORGE-CUT, остаток 11) — Линейка СОЖ и сервисных продуктов для металлообработки.\n• Очиститель систем подачи СОЖ ForgeClean 555 (FORGE-CLEAN-555, остаток 42) — Промывка и санация систем подачи СОЖ перед заменой эмульсии.\n\n# ForgeCut — СОЖ для металлообработки\nЕсли нужно — могу создать лид в CRM или набросать КП.",
+      "run_id": "0b45675a-d172-49ff-8ae3-23086cd81a72",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 6
+      },
+      "latency_ms": 6,
+      "warning": null,
+      "grade": {
+        "passed": true,
+        "checks": [
+          {
+            "name": "tools_required",
+            "ok": true,
+            "detail": "все вызваны"
+          },
+          {
+            "name": "tools_forbidden",
+            "ok": true,
+            "detail": "нет лишних вызовов"
+          },
+          {
+            "name": "answer_content",
+            "ok": true,
+            "detail": "1/1 групп"
+          },
+          {
+            "name": "citation_source",
+            "ok": true,
+            "detail": "есть источник products/"
+          }
+        ],
+        "used_tools": [
+          "search_catalog"
+        ],
+        "content_groups_total": 1,
+        "content_groups_ok": 1,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "prod-sozh-wash",
+      "category": "product_selection",
+      "question": "Эмульсия в баке закисла и воняет. Что залить для промывки системы перед заменой?",
+      "answer": "Подбор по демо-базе знаний:\n• Очиститель систем подачи СОЖ ForgeClean 555 (FORGE-CLEAN-555, остаток 42) — Промывка и санация систем подачи СОЖ перед заменой эмульсии.\n• Масляная СОЖ ForgeSozh 632 (FORGE-SOZH-632, остаток 18) — Масляная СОЖ для тяжёлой металлообработки и легированных сталей.\n• Смазка NSF H1 ForgeFood 397 (FORGE-FOOD-397, остаток 65) — Полусинтетическая смазка с допуском NSF H1 для пищевых производств.\n\n# ForgeClean 555 — очиститель систем подачи СОЖ\nЕсли нужно — могу создать лид в CRM или набросать КП.",
+      "run_id": "e5b86a44-2ceb-4f20-ad87-7c7f0536f6b0",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 6
+      },
+      "latency_ms": 6,
+      "warning": null,
+      "grade": {
+        "passed": true,
+        "checks": [
+          {
+            "name": "tools_required",
+            "ok": true,
+            "detail": "все вызваны"
+          },
+          {
+            "name": "answer_content",
+            "ok": true,
+            "detail": "1/1 групп"
+          }
+        ],
+        "used_tools": [
+          "search_catalog"
+        ],
+        "content_groups_total": 1,
+        "content_groups_ok": 1,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "prod-railway-locks",
+      "category": "product_selection",
+      "question": "На железнодорожных вагонах замки дверей клинят на морозе. Нужно сухое покрытие.",
+      "answer": "Подбор по демо-базе знаний:\n• Покрытие ForgeCoat Flon (FORGE-COAT-FLON, остаток 9) — Узлы трения при перепадах температур, в том числе ж/д замки.\n• Фрикционное покрытие ForgeCoat 1031 (FORGE-COAT-1031, остаток 27) — Стабилизация момента затяжки крепежа, сухой смазочный слой на весь срок службы.\n• Антипригарное покрытие ForgeCoat 1007 (FORGE-COAT-1007, остаток 14) — Снижает налипание на линиях упаковки, повышает OEE.\n\n# ForgeCoat Flon — покрытие для узлов при перепадах температур\nЕсли нужно — могу создать лид в CRM или набросать КП.",
+      "run_id": "3132e320-6d30-4bea-bd97-c4b57cda743c",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 6
+      },
+      "latency_ms": 6,
+      "warning": null,
+      "grade": {
+        "passed": true,
+        "checks": [
+          {
+            "name": "tools_required",
+            "ok": true,
+            "detail": "все вызваны"
+          },
+          {
+            "name": "answer_content",
+            "ok": true,
+            "detail": "1/1 групп"
+          },
+          {
+            "name": "citation_source",
+            "ok": true,
+            "detail": "есть источник products/"
+          }
+        ],
+        "used_tools": [
+          "search_catalog"
+        ],
+        "content_groups_total": 1,
+        "content_groups_ok": 1,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "prod-fasteners",
+      "category": "product_selection",
+      "question": "Разброс момента затяжки на болтовых соединениях. Есть покрытие для стабилизации?",
+      "answer": "Подбор по демо-базе знаний:\n• Фрикционное покрытие ForgeCoat 1031 (FORGE-COAT-1031, остаток 27) — Стабилизация момента затяжки крепежа, сухой смазочный слой на весь срок службы.\n• Масляная СОЖ ForgeSozh 632 (FORGE-SOZH-632, остаток 18) — Масляная СОЖ для тяжёлой металлообработки и легированных сталей.\n• Смазка NSF H1 ForgeFood 397 (FORGE-FOOD-397, остаток 65) — Полусинтетическая смазка с допуском NSF H1 для пищевых производств.\n\n# ForgeCoat 1031 — фрикционное покрытие для крепежа\nЕсли нужно — могу создать лид в CRM или набросать КП.",
+      "run_id": "e7db326f-c681-495a-b618-10adf5ae8cfe",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 6
+      },
+      "latency_ms": 6,
+      "warning": null,
+      "grade": {
+        "passed": true,
+        "checks": [
+          {
+            "name": "tools_required",
+            "ok": true,
+            "detail": "все вызваны"
+          },
+          {
+            "name": "answer_content",
+            "ok": true,
+            "detail": "1/1 групп"
+          }
+        ],
+        "used_tools": [
+          "search_catalog"
+        ],
+        "content_groups_total": 1,
+        "content_groups_ok": 1,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "prod-antistick",
+      "category": "product_selection",
+      "question": "На линии упаковки продукт налипает на формующие детали, теряем OEE. Что посоветуете?",
+      "answer": "Подбор по демо-базе знаний:\n• Антипригарное покрытие ForgeCoat 1007 (FORGE-COAT-1007, остаток 14) — Снижает налипание на линиях упаковки, повышает OEE.\n• СОЖ ForgeCut (FORGE-CUT, остаток 11) — Линейка СОЖ и сервисных продуктов для металлообработки.\n\n# ForgeCoat 1007 — антипригарное покрытие\nЕсли нужно — могу создать лид в CRM или набросать КП.",
+      "run_id": "a87e0b00-191f-414f-8d6a-a5ece6b9ea54",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 7
+      },
+      "latency_ms": 7,
+      "warning": null,
+      "grade": {
+        "passed": true,
+        "checks": [
+          {
+            "name": "tools_required",
+            "ok": true,
+            "detail": "все вызваны"
+          },
+          {
+            "name": "answer_content",
+            "ok": true,
+            "detail": "1/1 групп"
+          }
+        ],
+        "used_tools": [
+          "search_catalog"
+        ],
+        "content_groups_total": 1,
+        "content_groups_ok": 1,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "prod-hydraulics",
+      "category": "product_selection",
+      "question": "Нужны масла для гидравлики и редукторов на производстве.",
+      "answer": "Подбор по демо-базе знаний:\n• Масла ForgeFleet (FORGE-FLEET, остаток 200) — Моторные и трансмиссионные масла для легкового и коммерческого транспорта.\n• Масляная СОЖ ForgeSozh 632 (FORGE-SOZH-632, остаток 18) — Масляная СОЖ для тяжёлой металлообработки и легированных сталей.\n• Смазка NSF H1 ForgeFood 397 (FORGE-FOOD-397, остаток 65) — Полусинтетическая смазка с допуском NSF H1 для пищевых производств.\n\n# ForgeHT — индустриальные смазки и СОЖ\nЕсли нужно — могу создать лид в CRM или набросать КП.",
+      "run_id": "f7d8f0ed-076a-4a53-97b2-db995830426a",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 6
+      },
+      "latency_ms": 6,
+      "warning": null,
+      "grade": {
+        "passed": true,
+        "checks": [
+          {
+            "name": "tools_required",
+            "ok": true,
+            "detail": "все вызваны"
+          },
+          {
+            "name": "answer_content",
+            "ok": true,
+            "detail": "1/1 групп"
+          }
+        ],
+        "used_tools": [
+          "search_catalog"
+        ],
+        "content_groups_total": 1,
+        "content_groups_ok": 1,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "prod-fleet",
+      "category": "product_selection",
+      "question": "У нас автопарк 40 единиц коммерческого транспорта, нужны моторные масла.",
+      "answer": "Черновик КП для Клиент\nЗадача: У нас автопарк 40 единиц коммерческого транспорта, нужны моторные масла.\nРекомендованные позиции: FORGE-FLEET, FORGE-IND\nСрок поставки: склад демо-склада, слот подтверждает логист.\nЦены — по актуальному прайсу, бот цены не фиксирует.",
+      "run_id": "4737383f-5b2e-4def-9528-7302fa66e64b",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 7
+      },
+      "latency_ms": 7,
+      "warning": null,
+      "grade": {
+        "passed": false,
+        "checks": [
+          {
+            "name": "tools_required",
+            "ok": false,
+            "detail": "не вызваны: ['search_catalog']"
+          },
+          {
+            "name": "answer_content",
+            "ok": false,
+            "detail": "0/1 групп; нет: [['ForgeFleet', 'ForgeFleet', 'ForgeOil']]"
+          }
+        ],
+        "used_tools": [
+          "draft_quote"
+        ],
+        "content_groups_total": 1,
+        "content_groups_ok": 0,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "prod-high-temp",
+      "category": "product_selection",
+      "question": "Нужна высокотемпературная водостойкая смазка для узла в горячей зоне.",
+      "answer": "Подбор по демо-базе знаний:\n• Смазка NSF H1 ForgeFood 397 (FORGE-FOOD-397, остаток 65) — Полусинтетическая смазка с допуском NSF H1 для пищевых производств.\n• Проникающая смазка ForgePen (FORGE-PEN, остаток 300) — Многофункциональная проникающая жидкость для сервиса и полевых работ.\n• Масляная СОЖ ForgeSozh 632 (FORGE-SOZH-632, остаток 18) — Масляная СОЖ для тяжёлой металлообработки и легированных сталей.\n\n# ForgePen — универсальная проникающая смазка\nЕсли нужно — могу создать лид в CRM или набросать КП.",
+      "run_id": "9642f535-dab9-48fd-8a19-c38d963eb446",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 5
+      },
+      "latency_ms": 5,
+      "warning": null,
+      "grade": {
+        "passed": false,
+        "checks": [
+          {
+            "name": "tools_required",
+            "ok": true,
+            "detail": "все вызваны"
+          },
+          {
+            "name": "answer_content",
+            "ok": false,
+            "detail": "0/1 групп; нет: [['ForgeHT', 'высокотемпературн']]"
+          }
+        ],
+        "used_tools": [
+          "search_catalog"
+        ],
+        "content_groups_total": 1,
+        "content_groups_ok": 0,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "prod-penetrating",
+      "category": "product_selection",
+      "question": "Что взять сервисной выездной бригаде как универсальную проникающую смазку?",
+      "answer": "Подбор по демо-базе знаний:\n• Очиститель систем подачи СОЖ ForgeClean 555 (FORGE-CLEAN-555, остаток 42) — Промывка и санация систем подачи СОЖ перед заменой эмульсии.\n• Масляная СОЖ ForgeSozh 632 (FORGE-SOZH-632, остаток 18) — Масляная СОЖ для тяжёлой металлообработки и легированных сталей.\n• Смазка NSF H1 ForgeFood 397 (FORGE-FOOD-397, остаток 65) — Полусинтетическая смазка с допуском NSF H1 для пищевых производств.\n\n# Пропущенный звонок PhonePBX\nЕсли нужно — могу создать лид в CRM или набросать КП.",
+      "run_id": "8a046921-6582-46af-bb97-9bbc95a2bf95",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 6
+      },
+      "latency_ms": 6,
+      "warning": null,
+      "grade": {
+        "passed": false,
+        "checks": [
+          {
+            "name": "tools_required",
+            "ok": true,
+            "detail": "все вызваны"
+          },
+          {
+            "name": "answer_content",
+            "ok": false,
+            "detail": "0/1 групп; нет: [['ForgePen', 'проникающ']]"
+          }
+        ],
+        "used_tools": [
+          "search_catalog"
+        ],
+        "content_groups_total": 1,
+        "content_groups_ok": 0,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "lead-full-info",
+      "category": "lead_creation",
+      "question": "Создай лид: ООО «Литейный Двор», контакт Андрей, телефон +7 495 777-12-12, нужна масляная СОЖ на легированную сталь.",
+      "answer": "Создал лид «ООО «Литейный Двор», стадия qualified, CRM id CRM-075244-5. Отдел продаж получил уведомление в TeamChat.",
+      "run_id": "c07a2a5e-178c-4341-bfbe-ac5c485a2899",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 31
+      },
+      "latency_ms": 31,
+      "warning": null,
+      "grade": {
+        "passed": true,
+        "checks": [
+          {
+            "name": "tools_required",
+            "ok": true,
+            "detail": "все вызваны"
+          },
+          {
+            "name": "answer_content",
+            "ok": true,
+            "detail": "1/1 групп"
+          }
+        ],
+        "used_tools": [
+          "create_lead"
+        ],
+        "content_groups_total": 1,
+        "content_groups_ok": 1,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "lead-food-audit",
+      "category": "lead_creation",
+      "question": "Зафиксируй заявку в CRM: АО «МолКомбинат», нужна пищевая смазка NSF H1 на розлив, аудит через месяц.",
+      "answer": "Создал лид «АО «МолКомбинат», стадия qualified, CRM id CRM-075244-6. Отдел продаж получил уведомление в TeamChat.",
+      "run_id": "a849e897-7735-41f3-b737-9cbfeeaa74a8",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 29
+      },
+      "latency_ms": 29,
+      "warning": null,
+      "grade": {
+        "passed": true,
+        "checks": [
+          {
+            "name": "tools_required",
+            "ok": true,
+            "detail": "все вызваны"
+          },
+          {
+            "name": "answer_content",
+            "ok": true,
+            "detail": "1/1 групп"
+          }
+        ],
+        "used_tools": [
+          "create_lead"
+        ],
+        "content_groups_total": 1,
+        "content_groups_ok": 1,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "lead-missing-company",
+      "category": "lead_qualification",
+      "question": "Создай лид, клиенту нужна смазка.",
+      "answer": "Создал лид «Клиент из чата», стадия qualified, CRM id CRM-075244-7. Отдел продаж получил уведомление в TeamChat.",
+      "run_id": "55732d9e-8cbe-4b64-b321-f336827e136b",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 27
+      },
+      "latency_ms": 27,
+      "warning": null,
+      "grade": {
+        "passed": false,
+        "checks": [
+          {
+            "name": "tools_forbidden",
+            "ok": false,
+            "detail": "лишние вызовы: ['create_lead']"
+          },
+          {
+            "name": "answer_content",
+            "ok": false,
+            "detail": "0/1 групп; нет: [['компан', 'уточн', 'назван', 'как называется']]"
+          }
+        ],
+        "used_tools": [
+          "create_lead"
+        ],
+        "content_groups_total": 1,
+        "content_groups_ok": 0,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "lead-missing-need",
+      "category": "lead_qualification",
+      "question": "Создай лид на ООО «Ромашка».",
+      "answer": "Создал лид «ООО «Ромашка», стадия qualified, CRM id CRM-075244-8. Отдел продаж получил уведомление в TeamChat.",
+      "run_id": "2a196d64-accf-440b-8f69-3476afc7a5cd",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 27
+      },
+      "latency_ms": 27,
+      "warning": null,
+      "grade": {
+        "passed": false,
+        "checks": [
+          {
+            "name": "tools_forbidden",
+            "ok": false,
+            "detail": "лишние вызовы: ['create_lead']"
+          },
+          {
+            "name": "answer_content",
+            "ok": false,
+            "detail": "0/1 групп; нет: [['задач', 'уточн', 'что именно', 'какую']]"
+          }
+        ],
+        "used_tools": [
+          "create_lead"
+        ],
+        "content_groups_total": 1,
+        "content_groups_ok": 0,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "quote-metalworking",
+      "category": "quote",
+      "question": "Подготовь КП для ООО «ТехноСтан» на СОЖ и промывку системы подачи.",
+      "answer": "Черновик КП для ООО «ТехноСтан\nЗадача: Подготовь КП для ООО «ТехноСтан» на СОЖ и промывку системы подачи.\nРекомендованные позиции: FORGE-CLEAN-555, FORGE-CUT, FORGE-IND\nСрок поставки: склад демо-склада, слот подтверждает логист.\nЦены — по актуальному прайсу, бот цены не фиксирует.",
+      "run_id": "71a1d6f9-6e78-4306-b0e3-c385ab1cf119",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 7
+      },
+      "latency_ms": 7,
+      "warning": null,
+      "grade": {
+        "passed": true,
+        "checks": [
+          {
+            "name": "tools_any_of",
+            "ok": true,
+            "detail": "вызваны: ['draft_quote']"
+          },
+          {
+            "name": "answer_content",
+            "ok": true,
+            "detail": "1/1 групп"
+          }
+        ],
+        "used_tools": [
+          "draft_quote"
+        ],
+        "content_groups_total": 1,
+        "content_groups_ok": 1,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "quote-food",
+      "category": "quote",
+      "question": "Нужно коммерческое предложение для АО «ХлебПром» на пищевые смазки NSF H1.",
+      "answer": "Черновик КП для АО «ХлебПром\nЗадача: Нужно коммерческое предложение для АО «ХлебПром» на пищевые смазки NSF H1.\nРекомендованные позиции: FORGE-FOOD-397, FORGE-PEN\nСрок поставки: склад демо-склада, слот подтверждает логист.\nЦены — по актуальному прайсу, бот цены не фиксирует.",
+      "run_id": "c088d839-78a9-428e-94bf-8a7b01b7a4a8",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 6
+      },
+      "latency_ms": 6,
+      "warning": null,
+      "grade": {
+        "passed": true,
+        "checks": [
+          {
+            "name": "tools_any_of",
+            "ok": true,
+            "detail": "вызваны: ['draft_quote']"
+          },
+          {
+            "name": "answer_content",
+            "ok": true,
+            "detail": "1/1 групп"
+          }
+        ],
+        "used_tools": [
+          "draft_quote"
+        ],
+        "content_groups_total": 1,
+        "content_groups_ok": 1,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "policy-missed-call",
+      "category": "policy",
+      "question": "Какой у нас регламент по пропущенному звонку из телефонии?",
+      "answer": "Подбор по демо-базе знаний:\n• Очиститель систем подачи СОЖ ForgeClean 555 (FORGE-CLEAN-555, остаток 42) — Промывка и санация систем подачи СОЖ перед заменой эмульсии.\n• Масляная СОЖ ForgeSozh 632 (FORGE-SOZH-632, остаток 18) — Масляная СОЖ для тяжёлой металлообработки и легированных сталей.\n• Смазка NSF H1 ForgeFood 397 (FORGE-FOOD-397, остаток 65) — Полусинтетическая смазка с допуском NSF H1 для пищевых производств.\n\nВозражения:\n- «Дорого относительно эмульсии» → считать стойкость инструмента и брак по шероховатости, а не цену литра.\n- «У нас уже есть эмульсия» → SOZH-632 часто берут на отдельные станки/операции, не обязательно менять всю систему.\nЕсли нужно — могу создать лид в CRM или набросать КП.",
+      "run_id": "3d2b26e1-cc83-4d72-976c-f803b8a1adb5",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 5
+      },
+      "latency_ms": 5,
+      "warning": null,
+      "grade": {
+        "passed": false,
+        "checks": [
+          {
+            "name": "tools_any_of",
+            "ok": true,
+            "detail": "вызваны: ['search_catalog']"
+          },
+          {
+            "name": "answer_content",
+            "ok": false,
+            "detail": "1/2 групп; нет: [['15 минут', 'перезвон']]"
+          },
+          {
+            "name": "citation_source",
+            "ok": true,
+            "detail": "есть источник processes/"
+          }
+        ],
+        "used_tools": [
+          "search_catalog"
+        ],
+        "content_groups_total": 2,
+        "content_groups_ok": 1,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "policy-qualification-fields",
+      "category": "policy",
+      "question": "Какие поля обязательно собрать при квалификации входящей заявки?",
+      "answer": "Создал лид «Клиент из чата», стадия qualified, CRM id CRM-075244-9. Отдел продаж получил уведомление в TeamChat.",
+      "run_id": "939e5e81-d26b-4096-b7f9-f3e54d2b8786",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 29
+      },
+      "latency_ms": 29,
+      "warning": null,
+      "grade": {
+        "passed": false,
+        "checks": [
+          {
+            "name": "tools_any_of",
+            "ok": false,
+            "detail": "ни один из ['company_policy', 'search_catalog']"
+          },
+          {
+            "name": "answer_content",
+            "ok": false,
+            "detail": "0/2 групп; нет: [['ИНН', 'компан'], ['отрасл', 'объём', 'объем', 'ЛПР']]"
+          },
+          {
+            "name": "citation_source",
+            "ok": true,
+            "detail": "есть источник processes/"
+          }
+        ],
+        "used_tools": [
+          "create_lead"
+        ],
+        "content_groups_total": 2,
+        "content_groups_ok": 0,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "policy-routing",
+      "category": "policy",
+      "question": "Клиент из пищевки просит допуск NSF. В какую линейку и с каким тегом маршрутизировать?",
+      "answer": "Подбор по демо-базе знаний:\n• Смазка NSF H1 ForgeFood 397 (FORGE-FOOD-397, остаток 65) — Полусинтетическая смазка с допуском NSF H1 для пищевых производств.\n\n# ForgeFood 397 — полусинтетическая смазка NSF H1\nЕсли нужно — могу создать лид в CRM или набросать КП.",
+      "run_id": "49dfd6aa-5f35-4203-a067-b7a93b473e77",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 6
+      },
+      "latency_ms": 6,
+      "warning": null,
+      "grade": {
+        "passed": true,
+        "checks": [
+          {
+            "name": "tools_any_of",
+            "ok": true,
+            "detail": "вызваны: ['search_catalog']"
+          },
+          {
+            "name": "answer_content",
+            "ok": true,
+            "detail": "2/2 групп"
+          }
+        ],
+        "used_tools": [
+          "search_catalog"
+        ],
+        "content_groups_total": 2,
+        "content_groups_ok": 2,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "policy-work-hours",
+      "category": "policy",
+      "question": "Где находится склад и какой режим работы?",
+      "answer": "Подбор по демо-базе знаний:\n• Очиститель систем подачи СОЖ ForgeClean 555 (FORGE-CLEAN-555, остаток 42) — Промывка и санация систем подачи СОЖ перед заменой эмульсии.\n• Масляная СОЖ ForgeSozh 632 (FORGE-SOZH-632, остаток 18) — Масляная СОЖ для тяжёлой металлообработки и легированных сталей.\n• Смазка NSF H1 ForgeFood 397 (FORGE-FOOD-397, остаток 65) — Полусинтетическая смазка с допуском NSF H1 для пищевых производств.\n\n# Логистика и режим работы\nЛогистика: склад в демо-склада, слот подтверждает логист. Бот не обещает точное окно.\nЕсли нужно — могу создать лид в CRM или набросать КП.",
+      "run_id": "e1c2aa3c-47eb-4cac-a8a2-4805afa8d134",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 6
+      },
+      "latency_ms": 6,
+      "warning": null,
+      "grade": {
+        "passed": false,
+        "checks": [
+          {
+            "name": "tools_any_of",
+            "ok": true,
+            "detail": "вызваны: ['search_catalog']"
+          },
+          {
+            "name": "answer_content",
+            "ok": false,
+            "detail": "1/2 групп; нет: [['09:00', '9:00', '18:00']]"
+          },
+          {
+            "name": "citation_source",
+            "ok": true,
+            "detail": "есть источник processes/"
+          }
+        ],
+        "used_tools": [
+          "search_catalog"
+        ],
+        "content_groups_total": 2,
+        "content_groups_ok": 1,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "policy-sla",
+      "category": "policy",
+      "question": "Заявка пришла в субботу ночью. Что делает менеджер по SLA?",
+      "answer": "Создал лид «Клиент из чата», стадия qualified, CRM id CRM-075244-10. Отдел продаж получил уведомление в TeamChat.",
+      "run_id": "054854e6-cd34-46db-b141-7371b676b901",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 27
+      },
+      "latency_ms": 27,
+      "warning": null,
+      "grade": {
+        "passed": false,
+        "checks": [
+          {
+            "name": "tools_any_of",
+            "ok": false,
+            "detail": "ни один из ['company_policy', 'search_catalog']"
+          },
+          {
+            "name": "answer_content",
+            "ok": false,
+            "detail": "1/2 групп; нет: [['перезвон', 'открыти', 'задач']]"
+          }
+        ],
+        "used_tools": [
+          "create_lead"
+        ],
+        "content_groups_total": 2,
+        "content_groups_ok": 1,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "guard-price",
+      "category": "guardrail",
+      "question": "Сколько точно стоит килограмм ForgeFood 397? Назови цену в рублях.",
+      "answer": "Подбор по демо-базе знаний:\n• Смазка NSF H1 ForgeFood 397 (FORGE-FOOD-397, остаток 65) — Полусинтетическая смазка с допуском NSF H1 для пищевых производств.\n\n# ForgeFood 397 — полусинтетическая смазка NSF H1\nЕсли нужно — могу создать лид в CRM или набросать КП.",
+      "run_id": "1ae6ea22-1252-4a1c-b1c1-c88e3b6f8f71",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 6
+      },
+      "latency_ms": 6,
+      "warning": null,
+      "grade": {
+        "passed": false,
+        "checks": [
+          {
+            "name": "answer_content",
+            "ok": false,
+            "detail": "0/1 групп; нет: [['прайс', 'не фикс', 'не могу', 'менеджер', 'уточн']]"
+          },
+          {
+            "name": "guardrails",
+            "ok": true,
+            "detail": "нарушений нет"
+          }
+        ],
+        "used_tools": [
+          "search_catalog"
+        ],
+        "content_groups_total": 1,
+        "content_groups_ok": 0,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "guard-delivery-slot",
+      "category": "guardrail",
+      "question": "Привезёте завтра к 10:00 в демо-склада? Подтверди точное время.",
+      "answer": "Подбор по демо-базе знаний:\n• Индустриальные масла ForgeOil IND (FORGE-IND, остаток 120) — Гидравлика, редукторы, компрессоры. Позиция демо-каталога OpsForge.\n\n# Логистика и режим работы\nЛогистика: склад в демо-склада, слот подтверждает логист. Бот не обещает точное окно.\nЕсли нужно — могу создать лид в CRM или набросать КП.",
+      "run_id": "ed78c764-6443-4c11-b399-4fa82364a47e",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 5
+      },
+      "latency_ms": 5,
+      "warning": null,
+      "grade": {
+        "passed": true,
+        "checks": [
+          {
+            "name": "answer_content",
+            "ok": true,
+            "detail": "1/1 групп"
+          },
+          {
+            "name": "guardrails",
+            "ok": true,
+            "detail": "нарушений нет"
+          }
+        ],
+        "used_tools": [
+          "search_catalog"
+        ],
+        "content_groups_total": 1,
+        "content_groups_ok": 1,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "guard-unknown-approval",
+      "category": "guardrail",
+      "question": "У покрытия ForgeCoat 1031 есть допуск NSF H1 для контакта с пищевыми продуктами?",
+      "answer": "Подбор по демо-базе знаний:\n• Смазка NSF H1 ForgeFood 397 (FORGE-FOOD-397, остаток 65) — Полусинтетическая смазка с допуском NSF H1 для пищевых производств.\n• Фрикционное покрытие ForgeCoat 1031 (FORGE-COAT-1031, остаток 27) — Стабилизация момента затяжки крепежа, сухой смазочный слой на весь срок службы.\n• Антипригарное покрытие ForgeCoat 1007 (FORGE-COAT-1007, остаток 14) — Снижает налипание на линиях упаковки, повышает OEE.\n\n# ForgeFood 397 — полусинтетическая смазка NSF H1\nЕсли нужно — могу создать лид в CRM или набросать КП.",
+      "run_id": "7efdb1bb-b272-4809-97bf-f904192461d7",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 5
+      },
+      "latency_ms": 5,
+      "warning": null,
+      "grade": {
+        "passed": false,
+        "checks": [
+          {
+            "name": "answer_content",
+            "ok": false,
+            "detail": "0/1 групп; нет: [['нет данных', 'не подтвержд', 'технолог', 'эскалац', 'уточн', 'не указан']]"
+          },
+          {
+            "name": "guardrails",
+            "ok": true,
+            "detail": "нарушений нет"
+          }
+        ],
+        "used_tools": [
+          "search_catalog"
+        ],
+        "content_groups_total": 1,
+        "content_groups_ok": 0,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "guard-unknown-product",
+      "category": "guardrail",
+      "question": "Подберите нам криогенную смазку для жидкого азота на -190 °C.",
+      "answer": "Подбор по демо-базе знаний:\n• Масляная СОЖ ForgeSozh 632 (FORGE-SOZH-632, остаток 18) — Масляная СОЖ для тяжёлой металлообработки и легированных сталей.\n• Смазка NSF H1 ForgeFood 397 (FORGE-FOOD-397, остаток 65) — Полусинтетическая смазка с допуском NSF H1 для пищевых производств.\n• Масла ForgeFleet (FORGE-FLEET, остаток 200) — Моторные и трансмиссионные масла для легкового и коммерческого транспорта.\n\n# ForgeSozh 632 — масляная СОЖ\nЕсли нужно — могу создать лид в CRM или набросать КП.",
+      "run_id": "9d08f06c-5006-498c-941e-f0031d694d62",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 6
+      },
+      "latency_ms": 6,
+      "warning": null,
+      "grade": {
+        "passed": false,
+        "checks": [
+          {
+            "name": "answer_content",
+            "ok": false,
+            "detail": "0/1 групп; нет: [['нет', 'технолог', 'эскалац', 'уточн', 'не наш']]"
+          },
+          {
+            "name": "guardrails",
+            "ok": true,
+            "detail": "нарушений нет"
+          }
+        ],
+        "used_tools": [
+          "search_catalog"
+        ],
+        "content_groups_total": 1,
+        "content_groups_ok": 0,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "escalate-notify",
+      "category": "escalation",
+      "question": "Клиент требует ответа технолога по совместимости СОЖ с алюминием. Сообщи в продажи.",
+      "answer": "Подбор по демо-базе знаний:\n• Очиститель систем подачи СОЖ ForgeClean 555 (FORGE-CLEAN-555, остаток 42) — Промывка и санация систем подачи СОЖ перед заменой эмульсии.\n• Масляная СОЖ ForgeSozh 632 (FORGE-SOZH-632, остаток 18) — Масляная СОЖ для тяжёлой металлообработки и легированных сталей.\n• СОЖ ForgeCut (FORGE-CUT, остаток 11) — Линейка СОЖ и сервисных продуктов для металлообработки.\n\n# ForgeFood 397 — полусинтетическая смазка NSF H1\nЕсли нужно — могу создать лид в CRM или набросать КП.",
+      "run_id": "21c28419-e0a3-41c1-82cc-792d6bf17020",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 6
+      },
+      "latency_ms": 6,
+      "warning": null,
+      "grade": {
+        "passed": false,
+        "checks": [
+          {
+            "name": "tools_any_of",
+            "ok": false,
+            "detail": "ни один из ['notify_sales']"
+          },
+          {
+            "name": "answer_content",
+            "ok": false,
+            "detail": "0/1 групп; нет: [['TeamChat', 'продаж', 'уведом', 'сообщ']]"
+          }
+        ],
+        "used_tools": [
+          "search_catalog"
+        ],
+        "content_groups_total": 1,
+        "content_groups_ok": 0,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "multistep-search-then-lead",
+      "category": "multi_step",
+      "question": "Подбери смазку NSF H1 для фасовки и сразу создай лид на ООО «ПищеЛиния», контакт Ольга.",
+      "answer": "Создал лид «ООО «ПищеЛиния», стадия qualified, CRM id CRM-075244-11. Отдел продаж получил уведомление в TeamChat.",
+      "run_id": "7c989b5a-d6de-4d50-9ce5-aeeb13d03523",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 26
+      },
+      "latency_ms": 26,
+      "warning": null,
+      "grade": {
+        "passed": false,
+        "checks": [
+          {
+            "name": "tools_required",
+            "ok": false,
+            "detail": "не вызваны: ['search_catalog']"
+          },
+          {
+            "name": "answer_content",
+            "ok": false,
+            "detail": "1/2 групп; нет: [['FOOD-397', 'ForgeFood']]"
+          }
+        ],
+        "used_tools": [
+          "create_lead"
+        ],
+        "content_groups_total": 2,
+        "content_groups_ok": 1,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    },
+    {
+      "id": "out-of-scope",
+      "category": "out_of_scope",
+      "question": "Посоветуй хороший ресторан рядом со складом на вечер.",
+      "answer": "Подбор по демо-базе знаний:\n• Очиститель систем подачи СОЖ ForgeClean 555 (FORGE-CLEAN-555, остаток 42) — Промывка и санация систем подачи СОЖ перед заменой эмульсии.\n• Масляная СОЖ ForgeSozh 632 (FORGE-SOZH-632, остаток 18) — Масляная СОЖ для тяжёлой металлообработки и легированных сталей.\n• Смазка NSF H1 ForgeFood 397 (FORGE-FOOD-397, остаток 65) — Полусинтетическая смазка с допуском NSF H1 для пищевых производств.\n\n# ForgeFood 397 — полусинтетическая смазка NSF H1\nЛогистика: склад в демо-склада, слот подтверждает логист. Бот не обещает точное окно.\nЕсли нужно — могу создать лид в CRM или набросать КП.",
+      "run_id": "2e267752-df26-49a7-806c-6913b2be0e09",
+      "mode": "demo",
+      "iterations": 1,
+      "usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "cost_usd": 0.0,
+        "llm_calls": 0,
+        "latency_ms": 5
+      },
+      "latency_ms": 5,
+      "warning": null,
+      "grade": {
+        "passed": true,
+        "checks": [
+          {
+            "name": "tools_forbidden",
+            "ok": true,
+            "detail": "нет лишних вызовов"
+          },
+          {
+            "name": "answer_content",
+            "ok": true,
+            "detail": "1/1 групп"
+          }
+        ],
+        "used_tools": [
+          "search_catalog"
+        ],
+        "content_groups_total": 1,
+        "content_groups_ok": 1,
+        "guardrail_violations": 0,
+        "has_citations": true
+      }
+    }
+  ]
+}

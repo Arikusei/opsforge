@@ -1,0 +1,84 @@
+{
+  "name": "OpsForge: заявка с сайта → квалификация → CRM → TeamChat",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "opsforge-site-lead",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "wh-site-lead",
+      "name": "Webhook сайта",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8000/webhooks/site-lead",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "X-Webhook-Secret", "value": "opsforge-webhook-dev" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "id": "http-api",
+      "name": "AI Ops API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [260, 0]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" },
+          "conditions": [
+            {
+              "id": "has-lead",
+              "leftValue": "={{ $json.lead && $json.lead.id }}",
+              "rightValue": "",
+              "operator": { "type": "boolean", "operation": "true", "singleValue": true }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "if-ok",
+      "name": "Лид создан?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [520, 0]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            { "id": "status", "name": "status", "value": "ok", "type": "string" },
+            { "id": "crm", "name": "crm_id", "value": "={{ $json.lead.crm_id }}", "type": "string" }
+          ]
+        }
+      },
+      "id": "set-ok",
+      "name": "Ответ менеджеру",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [760, -80]
+    }
+  ],
+  "connections": {
+    "Webhook сайта": { "main": [[{ "node": "AI Ops API", "type": "main", "index": 0 }]] },
+    "AI Ops API": { "main": [[{ "node": "Лид создан?", "type": "main", "index": 0 }]] },
+    "Лид создан?": { "main": [[{ "node": "Ответ менеджеру", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "opsforge" }, { "name": "sales" }]
+}

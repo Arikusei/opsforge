@@ -1,0 +1,44 @@
+{
+  "name": "OpsForge: пропущенный звонок PhonePBX",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "opsforge-missed-call",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "wh-call",
+      "name": "Webhook PhonePBX",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8000/webhooks/phonepbx",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "X-Webhook-Secret", "value": "opsforge-webhook-dev" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}"
+      },
+      "id": "http-call",
+      "name": "Пайплайн missed-call",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [280, 0]
+    }
+  ],
+  "connections": {
+    "Webhook PhonePBX": { "main": [[{ "node": "Пайплайн missed-call", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "opsforge" }, { "name": "telephony" }]
+}

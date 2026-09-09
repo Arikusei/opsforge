@@ -1,0 +1,15 @@
+# OpsForge MCP — подключается к локальному API.
+# В Cursor: Settings → MCP → добавить этот файл или скопировать блок в mcp.json.
+
+{
+  "mcpServers": {
+    "opsforge": {
+      "command": "python",
+      "args": ["mcp/server.py"],
+      "env": {
+        "OPSFORGE_API_URL": "http://127.0.0.1:8000",
+        "WEBHOOK_SECRET": "opsforge-webhook-dev"
+      }
+    }
+  }
+}

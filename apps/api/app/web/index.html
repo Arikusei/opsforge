@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OpsForge AI Ops</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <strong>OpsForge</strong>
+            <span>AI Ops</span>
+          </div>
+        </div>
+        <nav>
+          <a href="#/" data-route="/" class="active">Обзор</a>
+          <a href="#/chat" data-route="/chat">Ассистент</a>
+          <a href="#/leads" data-route="/leads">Сделки</a>
+          <a href="#/calls" data-route="/calls">Телефония</a>
+          <a href="#/knowledge" data-route="/knowledge">База знаний</a>
+          <a href="#/workflows" data-route="/workflows">Пайплайны</a>
+          <a href="#/integrations" data-route="/integrations">Интеграции</a>
+        </nav>
+        <div class="sidebar-foot">
+          <p>OpsForge Demo</p>
+          <p>ForgeOil · ForgeFood · ForgeCoat</p>
+        </div>
+      </aside>
+      <main>
+        <header class="topbar">
+          <div>
+            <h1 id="page-title">Обзор</h1>
+            <p id="page-sub">Контур автоматизации продаж и внутренних процессов</p>
+          </div>
+          <div class="top-actions">
+            <span class="pill" id="llm-pill">LLM: demo</span>
+            <button id="refresh-btn" class="ghost">Обновить</button>
+          </div>
+        </header>
+        <section id="view" class="view">
+          <div class="card">Загрузка контура автоматизации OpsForge…</div>
+        </section>
+      </main>
+    </div>
+    <script src="/assets/app.js"></script>
+  </body>
+</html>

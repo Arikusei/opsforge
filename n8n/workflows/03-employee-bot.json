@@ -1,0 +1,42 @@
+{
+  "name": "OpsForge: внутренний бот TeamChat",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "opsforge-teamchat",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "wh-teamchat",
+      "name": "Webhook TeamChat",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8000/webhooks/teamchat",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [{ "name": "X-Webhook-Secret", "value": "opsforge-webhook-dev" }]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}"
+      },
+      "id": "http-bot",
+      "name": "RAG-агент",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [280, 0]
+    }
+  ],
+  "connections": {
+    "Webhook TeamChat": { "main": [[{ "node": "RAG-агент", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "opsforge" }, { "name": "ai-bot" }]
+}
