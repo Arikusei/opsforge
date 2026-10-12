@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 
 from sqlalchemy.orm import Session
 
@@ -97,8 +97,9 @@ def missed_call(db: Session, payload: dict) -> dict:
         )
         lead = db.get(Lead, created_lead["id"])
         created = True
+    now_ts = int(datetime.now(timezone.utc).timestamp())
     event = CallEvent(
-        external_id=payload.get("call_id") or f"pbx-{int(datetime.utcnow().timestamp())}",
+        external_id=payload.get("call_id") or f"pbx-{now_ts}",
         caller=caller,
         status="missed",
         summary="Пропущенный звонок. Создана задача на перезвон 15 минут.",
@@ -133,5 +134,5 @@ def knowledge_sync_stub(db: Session, payload: dict) -> dict:
     from app.rag.ingest import ingest_knowledge
 
     count = ingest_knowledge(db)
-    s3.put_json(db, "knowledge/sync.json", {"chunks": count, "at": datetime.utcnow().isoformat()})
+    s3.put_json(db, "knowledge/sync.json", {"chunks": count, "at": datetime.now(timezone.utc).isoformat()})
     return {"chunks": count}

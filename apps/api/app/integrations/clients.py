@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 
 from sqlalchemy.orm import Session
 
@@ -25,7 +25,8 @@ class CRMClient:
         self.mode = "live" if live else "mock"
 
     def upsert_lead(self, db: Session, lead: dict) -> dict:
-        external_id = lead.get("crm_id") or f"CRM-{datetime.utcnow().strftime('%H%M%S')}-{lead.get('id', 0)}"
+        now = datetime.now(timezone.utc)
+        external_id = lead.get("crm_id") or f"CRM-{now.strftime('%H%M%S')}-{lead.get('id', 0)}"
         body = {**lead, "crm_id": external_id, "pipeline": "Продажи OpsForge"}
         log_event(db, "crm", "upsert_lead", body)
         return {"ok": True, "mode": self.mode, "crm_id": external_id, "stage": lead.get("stage", "new")}
@@ -43,7 +44,8 @@ class TeamChatClient:
     def notify(self, db: Session, channel: str, text: str) -> dict:
         payload = {"channel": channel, "text": text}
         log_event(db, "teamchat", "notify", payload)
-        return {"ok": True, "mode": self.mode, "message_id": f"tc-{int(datetime.utcnow().timestamp())}"}
+        now_ts = int(datetime.now(timezone.utc).timestamp())
+        return {"ok": True, "mode": self.mode, "message_id": f"tc-{now_ts}"}
 
 
 class PhonePBXClient:

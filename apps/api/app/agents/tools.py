@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 
 from sqlalchemy.orm import Session
 
@@ -244,5 +244,5 @@ def _lead_dict(lead: Lead) -> dict:
         "owner": lead.owner,
         "crm_id": lead.crm_id,
         "score": lead.score,
-        "created_at": (lead.created_at or datetime.utcnow()).isoformat(),
+        "created_at": (lead.created_at or datetime.now(timezone.utc)).isoformat(),
     }

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 from sqlalchemy.orm import Session
 
@@ -77,6 +77,7 @@ def _seed_leads(db: Session) -> None:
 
 def _seed_calls(db: Session) -> None:
     lead = db.query(Lead).filter(Lead.crm_id == "CRM-1003").first()
+    now = datetime.now(timezone.utc)
     db.add_all(
         [
             CallEvent(
@@ -85,7 +86,7 @@ def _seed_calls(db: Session) -> None:
                 status="missed",
                 summary="Не дозвонились, клиент из РемДорМаш",
                 lead_id=lead.id if lead else None,
-                created_at=datetime.utcnow() - timedelta(hours=2),
+                created_at=now - timedelta(hours=2),
             ),
             CallEvent(
                 external_id="pbx-8802",
@@ -93,7 +94,7 @@ def _seed_calls(db: Session) -> None:
                 status="answered",
                 duration=312,
                 summary="ТехноСтан: обсудили промывку бака и замену СОЖ",
-                created_at=datetime.utcnow() - timedelta(hours=5),
+                created_at=now - timedelta(hours=5),
             ),
         ]
     )
@@ -104,7 +105,7 @@ def _seed_calls(db: Session) -> None:
             status="success",
             payload=json.dumps({"caller": "+7 495 300-40-50"}),
             result=json.dumps({"ok": True}),
-            created_at=datetime.utcnow() - timedelta(hours=2),
+            created_at=now - timedelta(hours=2),
         )
     )
     db.add(
